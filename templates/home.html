@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+<div class="home-table">
+    <form method="post" action="/" name="meal-form">
+      <div class="table-responsive-sm">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Monday</th>
+              <th scope="col">Tuesday</th>
+              <th scope="col">Wednesday</th>
+              <th scope="col">Thursday</th>
+              <th scope="col">Friday</th>
+              <th scope="col">Saturday</th>
+              <th scope="col">Sunday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Breakfast</th>
+              <td><button type="submit" class="input-button" value="monday-breakfast" name="food">{% if "monday-breakfast" in meals %} {{meals["monday-breakfast"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="tuesday-breakfast" name="food">{% if "tuesday-breakfast" in meals %} {{meals["tuesday-breakfast"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="wednesday-breakfast" name="food">{% if "wednesday-breakfast" in meals %} {{meals["wednesday-breakfast"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="thursday-breakfast" name="food">{% if "thursday-breakfast" in meals %} {{meals["thursday-breakfast"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="friday-breakfast" name="food">{% if "friday-breakfast" in meals %} {{meals["friday-breakfast"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="saturday-breakfast" name="food">{% if "saturday-breakfast" in meals %} {{meals["saturday-breakfast"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="sunday-breakfast" name="food">{% if "sunday-breakfast" in meals %} {{meals["sunday-breakfast"]["name"]}} {% else %}{% endif %}</button></td>
+            </tr>
+            <tr>
+              <th scope="row">Lunch</th>
+              <td><button type="submit" class="input-button" value="monday-lunch" name="food">{% if "monday-lunch" in meals %} {{meals["monday-lunch"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="tuesday-lunch" name="food">{% if "tuesday-lunch" in meals %} {{meals["tuesday-lunch"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="wednesday-lunch" name="food">{% if "wednesday-lunch" in meals %} {{meals["wednesday-lunch"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="thursday-lunch" name="food">{% if "thursday-lunch" in meals %} {{meals["thursday-lunch"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="friday-lunch" name="food">{% if "friday-lunch" in meals %} {{meals["friday-lunch"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="saturday-lunch" name="food">{% if "saturday-lunch" in meals %} {{meals["saturday-lunch"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="sunday-lunch" name="food">{% if "sunday-lunch" in meals %} {{meals["sunday-lunch"]["name"]}} {% else %}{% endif %}</button></td>
+            </tr>
+            <tr>
+              <th scope="row">Dinner</th>
+              <td><button type="submit" class="input-button" value="monday-dinner" name="food">{% if "monday-dinner" in meals %} {{meals["monday-dinner"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="tuesday-dinner" name="food">{% if "tuesday-dinner" in meals %} {{meals["tuesday-dinner"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="wednesday-dinner" name="food">{% if "wednesday-dinner" in meals %} {{meals["wednesday-dinner"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="thursday-dinner" name="food">{% if "thursday-dinner" in meals %} {{meals["thursday-dinner"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="friday-dinner" name="food">{% if "friday-dinner" in meals %} {{meals["friday-dinner"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="saturday-dinner" name="food">{% if "saturday-dinner" in meals %} {{meals["saturday-dinner"]["name"]}} {% else %}{% endif %}</button></td>
+              <td><button type="submit" class="input-button" value="sunday-dinner" name="food">{% if "sunday-dinner" in meals %} {{meals["sunday-dinner"]["name"]}} {% else %}{% endif %}</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+    <form action="/clear_table">
+      <button type="submit"> clear table</button>
+    </form>
+</div>
+<br>
+<br>
+<div class="home-button">
+  <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/meals';">Add meal</button>
+</div>
+
+{% endblock %}

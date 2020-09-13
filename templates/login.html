@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block main %}
+<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-interval="5000">
+      <img src="https://i.pinimg.com/originals/d3/6d/46/d36d462db827833805497d9ea78a1343.jpg" class="d-block w-100" alt="404 not found">
+      <div id="carousel-text" class="carousel-caption d-none d-md-block">
+        <h5>Plan your meals!</h5>
+        <p>Change the way you plan your meals with our vast selections.</p>
+      </div>
+    </div>
+    <div  class="carousel-item" data-interval="5000">
+      <img src="https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/2BAZlr8/videoblocks-beautiful-young-woman-making-notes-sitting-in-kitchen-4k_syq7gnjeu_thumbnail-full08.png" class="d-block w-100" alt="404 not found">
+      <div id="carousel-text" class="carousel-caption d-none d-md-block">
+        <h5>Your own personal schedule!</h5>
+        <p>No need to worry about losing your planner anymore.</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-interval="5000">
+      <img src="https://cutewallpaper.org/21/wallpaper-racks/Racks-And-Hooks-Storage-Modern-And-Efficient-Chef-Cooking-.jpg" class="d-block w-100" alt="404 not found">
+      <div id="carousel-text" class="carousel-caption d-none d-md-block">
+        <h5>Simple to 5 star meals!</h5>
+        <p>Choose from simple quick meals to ones that rival the best chefs.</p>
+      </div>
+    </div>
+    <div class="carousel-caption d-none d-md-block">
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/register';">Register</button>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+{% endblock %}

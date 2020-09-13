@@ -1,0 +1,189 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Meals
+{% endblock %}
+
+{% block main %}
+<form class="form-inline justify-content-center" method="POST">
+    <div class="search-form">
+        <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" id="inputPassword2" placeholder="Cuisine..." autocomplete="off" autofocus="off" name="cuisine">
+            <input type="text" class="form-control" id="inputPassword2" placeholder="Type..."autocomplete="off" autofocus="off" name="type" >
+        </div>
+    </div>
+    <div class="search-button">
+        <button type="submit" class="btn btn-primary mb-2">Search</button>
+    </div>
+</form>
+<p id="example-search">Search cuisine e.g. "italian", "mexican" and type e.g. "main course", "breakfast".</p>
+{% if search_query == 1 %}
+<div class="row">
+  <div class="column">
+    <img src={{query[0]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[0]['id']}}">{{query[0]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[1]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[1]['id']}}">{{query[1]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[2]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[2]['id']}}">{{query[2]["title"]}}</a></p>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="column">
+    <img src={{query[3]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[3]['id']}}">{{query[3]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[4]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[4]['id']}}">{{query[4]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[5]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[5]['id']}}">{{query[5]["title"]}}</a></p>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="column">
+    <img src={{query[6]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[6]['id']}}">{{query[6]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[7]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[7]['id']}}">{{query[7]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[8]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[8]['id']}}">{{query[8]["title"]}}</a></p>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="column">
+    <img src={{query[9]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[9]['id']}}">{{query[9]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[10]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[10]['id']}}">{{query[10]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[11]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[11]['id']}}">{{query[11]["title"]}}</a></p>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="column">
+    <img src={{query[12]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[12]['id']}}">{{query[12]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[13]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[13]['id']}}">{{query[13]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[14]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[14]['id']}}">{{query[14]["title"]}}</a></p>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="column">
+    <img src={{query[15]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[15]['id']}}">{{query[15]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[16]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[16]['id']}}">{{query[16]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[17]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[17]['id']}}">{{query[17]["title"]}}</a></p>
+  </div>
+</div><br>
+<div class="row">
+  <div class="column">
+    <img src={{query[18]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[18]['id']}}">{{query[18]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[19]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[19]['id']}}">{{query[19]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[20]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[20]['id']}}">{{query[20]["title"]}}</a></p>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="column">
+    <img src={{query[21]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[21]['id']}}">{{query[21]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[22]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[22]['id']}}">{{query[22]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[23]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[23]['id']}}">{{query[23]["title"]}}</a></p>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="column">
+    <img src={{query[24]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[24]['id']}}">{{query[24]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[25]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[25]['id']}}">{{query[25]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[26]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[26]['id']}}">{{query[26]["title"]}}</a></p>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="column">
+    <img src={{query[27]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[27]['id']}}">{{query[27]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[28]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[28]['id']}}">{{query[28]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[29]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[29]['id']}}">{{query[29]["title"]}}</a></p>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="column">
+    <img src={{query[30]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[30]['id']}}">{{query[30]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[31]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[31]['id']}}">{{query[31]["title"]}}</a></p>
+  </div>
+  <div class="column">
+    <img src={{query[32]["image"]}} alt="Nature" class="responsive" width="600" height="400">
+    <p class="image-text"><a href="/recipes/{{query[32]['id']}}">{{query[32]["title"]}}</a></p>
+  </div>
+</div>
+
+{% else %}
+{% endif %}
+
+
+{% endblock %}
