@@ -74,7 +74,6 @@
   margin: auto;
 }
 
-/* Clearfix (clear floats) */
 .row::after {
   content: "";
   clear: both;

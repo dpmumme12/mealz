@@ -19,7 +19,7 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-# using the api to return a dict with the ingredient info the user needs #
+# using the api to return a list of dicts with the ingredient info the user needs #
 def recipe(id):
     base_url = f"https://api.spoonacular.com/recipes/{id}/ingredientWidget.json?"
     url = base_url  + parse.urlencode({"apiKey": api_key})
@@ -34,7 +34,7 @@ def recipe(id):
         ingredients.append(info)
     return ingredients
 
-# using the api to return a dict with the meal info the user needs #
+# using the api to return a list of dicts with the meal info the user needs #
 def lookup(cuisine, meal_type):
     base_url = "https://api.spoonacular.com/recipes/complexSearch?"
     url = base_url  + parse.urlencode({"apiKey": api_key, "cuisine": cuisine, "type": meal_type, "number": '33'})
@@ -57,7 +57,7 @@ def lookup(cuisine, meal_type):
         results.append(info)
     return results
 
-# using the api to return a dict with the meal instructions info the user needs #
+# using the api to return a list of dicts with the cooking instructions info the user needs #
 def instructions(id):
     base_url = f"https://api.spoonacular.com/recipes/{id}/analyzedInstructions?"
     url = base_url  + parse.urlencode({"apiKey": api_key})
@@ -72,7 +72,7 @@ def instructions(id):
         instructions.append(info)
     return instructions
 
-# getting all the users meal schedule info from data base and returning it in a accessible dictionary #
+# getting all of the users meal schedule info from data base and returning it in a accessible dictionary #
 def meal():
     c.execute("SELECT * FROM meals WHERE user_id = :user", {"user": session["user_id"]})
     query = c.fetchall()
