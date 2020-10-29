@@ -2,8 +2,6 @@
 <br>
 Mealz
 
-# hey
-
 == Description ==
 <br>
 For my final project I built a flask app utilizing sqlite3 for my database and bootstrap to make the front end. The project's name is called 
