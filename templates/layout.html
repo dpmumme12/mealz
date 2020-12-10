@@ -28,11 +28,14 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a id="home-nav" class="nav-link" href="/logout">Logout</a>
+                            <a  class="nav-link" href="/logout">Logout</a>
                         </li>
                     </ul>
                 {% else %}
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">                      
+                            <a id="home-nav" class="nav-link" href="/guest_login">Sign in as Guest</a>
+                        </li>
                         <li class="nav-item active">
                             <div class="btn-group dropleft">
                                 <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

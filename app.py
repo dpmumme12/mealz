@@ -7,12 +7,12 @@ app = Flask(__name__)
 
 app.secret_key = b"\x07\xb0p\xb0\x1e\x8dB\x7f\xd0\x86\xbf'\xac\xf1\x1e\x1d@~\x9d\xef9\xbd\xf9\xa8"
 
-@app.after_request
-def after_request(response):
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    response.headers["Expires"] = 0
-    response.headers["Pragma"] = "no-cache"
-    return response
+#@app.after_request
+#def after_request(response):
+    #response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    #response.headers["Expires"] = 0
+    #response.headers["Pragma"] = "no-cache"
+    #return response
 
 conn = sqlite3.connect('mealz.db', check_same_thread=False)
 
@@ -39,6 +39,10 @@ def home():
 
     else:
         meals = meal()
+
+        if (session["user_id"] == 5):
+            flash("You are logged in as a guest. All meals added to the schedule will be deleted after logout. Enjoy!")
+            return render_template("home.html", alert = "primary", meals = meals)
 
         return render_template("home.html", meals = meals)
 
@@ -220,5 +224,17 @@ def clear_table():
     c.execute("DELETE FROM meals WHERE user_id = :user", {"user": session["user_id"]})
 
     conn.commit()
+
+    return redirect("/")
+
+@app.route("/guest_login")
+def guest_login():
+    session.clear()
+
+    c.execute("DELETE FROM meals WHERE user_id = :user", {"user": 5})
+
+    conn.commit()
+
+    session["user_id"] = 5
 
     return redirect("/")
