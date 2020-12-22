@@ -2,11 +2,14 @@ from functools import wraps
 from flask import session, flash, redirect
 import requests
 from urllib import parse
-import sqlite3
+import psycopg2
+import os
 
 api_key = "00c5a28809834ec8b204ee9a03fc64c0"
 
-conn = sqlite3.connect('mealz.db', check_same_thread=False)
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 c = conn.cursor()
 
@@ -74,7 +77,7 @@ def instructions(id):
 
 # getting all of the users meal schedule info from data base and returning it in a accessible dictionary #
 def meal():
-    c.execute("SELECT * FROM meals WHERE user_id = :user", {"user": session["user_id"]})
+    c.execute("SELECT * FROM meals WHERE user_id = %(user)s", {"user": session["user_id"]})
     query = c.fetchall()
     meals = {}
     for row in query:

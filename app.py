@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, session, request, flash, url_for
-import sqlite3
+import psycopg2
+import os
 from functions import login_required, recipe, lookup, instructions, meal
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -14,7 +15,9 @@ app.secret_key = b"\x07\xb0p\xb0\x1e\x8dB\x7f\xd0\x86\xbf'\xac\xf1\x1e\x1d@~\x9d
     #response.headers["Pragma"] = "no-cache"
     #return response
 
-conn = sqlite3.connect('mealz.db', check_same_thread=False)
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 c = conn.cursor()
 
@@ -23,7 +26,7 @@ c = conn.cursor()
 def home():
     if (request.method == "POST"):
         # selecting the meal info from the database #
-        c.execute("SELECT * FROM meals WHERE user_id = :user AND meal = :meal", {"user": session["user_id"], "meal": request.form.get("food")})
+        c.execute("SELECT * FROM meals WHERE user_id = %(user)s AND meal = %(meal)s", {"user": session["user_id"], "meal": request.form.get("food")})
         meal_query = c.fetchone()
 
         # setting the database info into a dict to transer the data to another route#
@@ -40,7 +43,7 @@ def home():
     else:
         meals = meal()
 
-        if (session["user_id"] == 5):
+        if (session["user_id"] == 1):
             flash("You are logged in as a guest. All meals added to the schedule will be deleted after logout. Enjoy!")
             return render_template("home.html", alert = "primary", meals = meals)
 
@@ -68,19 +71,19 @@ def register():
         password_hash = generate_password_hash(request.form.get("password"))
         username = request.form.get("username")
 
-        c.execute("SELECT * FROM users WHERE username = :user", {"user": username})
+        c.execute("SELECT * FROM users WHERE username = %(user)s", {"user": username})
         rows = c.fetchall()
 
         # checking if username is taken #
         if (len(rows) == 0):
-            c.execute("INSERT INTO users(username, password) VALUES(?, ?)", (request.form.get("username"), password_hash))
+            c.execute("INSERT INTO users(username, password) VALUES(%s, %s)", (request.form.get("username"), password_hash))
         else:
             flash("Username taken.")
             return render_template("register.html", alert = "error")
 
         conn.commit()
 
-        c.execute("SELECT id FROM users WHERE username = :user AND password = :password", {"user": username, "password": password_hash})
+        c.execute("SELECT id FROM users WHERE username = %(user)s AND password = %(password)s", {"user": username, "password": password_hash})
         new_id = c.fetchone()
         new_id = new_id[0]
 
@@ -117,7 +120,7 @@ def login():
             flash("Must provide password.")
             return render_template("login.html", alert = "error")
         
-        c.execute("SELECT * FROM users WHERE username = :user", {"user": request.form.get("username")})
+        c.execute("SELECT * FROM users WHERE username = %(user)s", {"user": request.form.get("username")})
 
         query = c.fetchone()
         
@@ -179,15 +182,15 @@ def recipes(id):
             else:
                 pass
 
-        c.execute("SELECT * FROM meals WHERE user_id = :user AND meal = :meal", {"user": session["user_id"], "meal": meal})
+        c.execute("SELECT * FROM meals WHERE user_id = %(user)s AND meal = %(meal)s", {"user": session["user_id"], "meal": meal})
         rows = c.fetchall()
 
         # checking if user already has meal in that timeslot in database #
         if (len(rows) == 0):
-            c.execute("INSERT INTO meals VALUES(?, ?, ?, ?, ?)", (session["user_id"], meal, query["id"], query["title"], query["image"]))
+            c.execute("INSERT INTO meals VALUES(%s, %s, %s, %s, %s)", (session["user_id"], meal, query["id"], query["title"], query["image"]))
         
         else:
-            c.execute("UPDATE meals SET meal_id = :id, meal_name = :title, meal_img = :image WHERE user_id = :user AND meal = :meal",
+            c.execute("UPDATE meals SET meal_id = %(id)s, meal_name = %(title)s, meal_img = %(image)s WHERE user_id = %(user)s AND meal = %(meal)s",
              {"id": query["id"], "title": query["title"], "image": query["image"], "user": session["user_id"], "meal": meal})
 
         conn.commit()
@@ -221,7 +224,7 @@ def recipes(id):
 @app.route("/clear_table")
 def clear_table():
     # deleting all meal information for the user in the database #
-    c.execute("DELETE FROM meals WHERE user_id = :user", {"user": session["user_id"]})
+    c.execute("DELETE FROM meals WHERE user_id = %(user)s", {"user": session["user_id"]})
 
     conn.commit()
 
@@ -231,10 +234,10 @@ def clear_table():
 def guest_login():
     session.clear()
 
-    c.execute("DELETE FROM meals WHERE user_id = :user", {"user": 5})
+    c.execute("DELETE FROM meals WHERE user_id = %(user)s", {"user": 1})
 
     conn.commit()
 
-    session["user_id"] = 5
+    session["user_id"] = 1
 
     return redirect("/")
