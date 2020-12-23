@@ -15,9 +15,15 @@ app.secret_key = b"\x07\xb0p\xb0\x1e\x8dB\x7f\xd0\x86\xbf'\xac\xf1\x1e\x1d@~\x9d
     #response.headers["Pragma"] = "no-cache"
     #return response
 
-DATABASE_URL = os.environ['DATABASE_URL']
+#DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+#conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+conn = psycopg2.connect(
+    host = 'localhost',
+    database = 'mealz',
+    user = 'postgres',
+    password = 'Lsurules12!')
 
 c = conn.cursor()
 

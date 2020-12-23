@@ -7,9 +7,15 @@ import os
 
 api_key = "00c5a28809834ec8b204ee9a03fc64c0"
 
-DATABASE_URL = os.environ['DATABASE_URL']
+#DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+#conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+conn = psycopg2.connect(
+    host = 'localhost',
+    database = 'mealz',
+    user = 'postgres',
+    password = 'Lsurules12!')
 
 c = conn.cursor()
 
